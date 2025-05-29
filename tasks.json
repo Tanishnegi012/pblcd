@@ -1,0 +1,34 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build calculator",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-std=c++17",
+                "src/main.cpp",
+                "-o",
+                "calc.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "run calculator",
+            "type": "shell",
+            "command": ".\\calc.exe",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "dependsOn": ["build calculator"]
+        }
+    ]
+} 
