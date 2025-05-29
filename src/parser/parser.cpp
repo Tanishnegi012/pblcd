@@ -1,3 +1,23 @@
+#include "../../include/parser/parser.hpp"
+#include <stdexcept>
+
+Parser::Parser(std::vector<Token> tokens) : tokens(std::move(tokens)) {}
+
+std::shared_ptr<ASTNode> Parser::parse() {
+    return expression();
+}
+
+std::shared_ptr<ASTNode> Parser::expression() {
+    auto left = term();
+
+    while (match(TokenType::PLUS) || match(TokenType::MINUS)) {
+        TokenType op = previous().type;
+        auto right = term();
+        left = std::make_shared<BinaryExpr>(left, op, right);
+    }
+
+    return left;
+}
 
 std::shared_ptr<ASTNode> Parser::term() {
     auto left = factor();
