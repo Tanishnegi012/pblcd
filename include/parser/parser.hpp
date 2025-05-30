@@ -5,9 +5,6 @@
 #include "../ast.hpp"
 
 class Parser {
-public:
-    explicit Parser(std::vector<Token> tokens);
-    std::shared_ptr<ASTNode> parse();
 
 private:
     std::vector<Token> tokens;
